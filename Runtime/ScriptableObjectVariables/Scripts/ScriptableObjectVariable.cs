@@ -45,7 +45,7 @@ namespace Blyman94.CommonSolutions
         /// <summary>
         /// The value of this variable as a <T>.
         /// </summary>
-        [SerializeField] protected T value;
+        [SerializeField] protected T _value;
 
         /// <summary>
         /// The value of this variable as a <T>. Invokes ValueUpdated when set.
@@ -54,11 +54,11 @@ namespace Blyman94.CommonSolutions
         {
             get
             {
-                return this.value;
+                return this._value;
             }
             set
             {
-                this.value = value;
+                this._value = value;
                 ValueUpdated?.Invoke();
             }
         }
