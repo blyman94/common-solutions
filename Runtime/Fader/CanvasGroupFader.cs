@@ -11,6 +11,7 @@ when transitioning to each state.
 
 Changelog:
 V1.0 - Initial Documentation (4.28.2023)
+V1.1 - Add option for CanvasGroup to start hidden (4.30.2023)
 */
 
 using System.Collections;
@@ -42,9 +43,15 @@ namespace Blyman94.CommonSolutions
         [SerializeField] private float _alphaOut = 0.0f;
 
         /// <summary>
-        /// When faded in, should this CanvasGroup be interactable?
+        /// Should this CanvasGroup start hidden?
         /// </summary>
         [Header("Canvas Group Parameters")]
+        [Tooltip("Should this CanvasGroup start hidden?")]
+        [SerializeField] private bool _startHidden = false;
+
+        /// <summary>
+        /// When faded in, should this CanvasGroup be interactable?
+        /// </summary>
         [Tooltip("When faded in, should this CanvasGroup be interactable?")]
         [SerializeField] private bool _interactableIn = true;
 
@@ -75,6 +82,13 @@ namespace Blyman94.CommonSolutions
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
+        }
+        private void Start()
+        {
+            if (_startHidden)
+            {
+                OutImmediate();
+            }
         }
         #endregion
 
@@ -110,7 +124,7 @@ namespace Blyman94.CommonSolutions
 
             HandleDelegatesAndEvents(fadeIn);
 
-            if(!fadeIn)
+            if (!fadeIn)
             {
                 _canvasGroup.interactable = _interactableOut;
                 _canvasGroup.blocksRaycasts = _blocksRaycastsOut;
@@ -148,7 +162,7 @@ namespace Blyman94.CommonSolutions
 
             HandleDelegatesAndEvents(fadeIn);
 
-            if(!fadeIn)
+            if (!fadeIn)
             {
                 _canvasGroup.interactable = _interactableOut;
                 _canvasGroup.blocksRaycasts = _blocksRaycastsOut;
