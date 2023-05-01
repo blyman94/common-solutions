@@ -25,9 +25,15 @@ namespace Blyman94.CommonSolutions
     public class AudioSourceVolumeFader : Fader
     {
         /// <summary>
+        /// Should this CanvasGroup fade out on start?
+        /// </summary>
+        [Header("Volume Fade Parameters")]
+        [Tooltip("Should this AudioSource volume fade in on start?")]
+        [SerializeField] private bool _fadeInOnStart = true;
+
+        /// <summary>
         /// The volume of this AudioSource when it is faded in.
         /// </summary>
-        [Header("Fade Volume")]
         [Range(0, 1)]
         [Tooltip("The volume of this AudioSource when it is faded in.")]
         [SerializeField] private float _volumeIn = 1;
@@ -48,6 +54,14 @@ namespace Blyman94.CommonSolutions
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
+        }
+        private void Start()
+        {
+            if (_fadeInOnStart)
+            {
+                OutImmediate();
+                FadeIn();
+            }
         }
         #endregion
 

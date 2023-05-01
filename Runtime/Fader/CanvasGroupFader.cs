@@ -50,6 +50,12 @@ namespace Blyman94.CommonSolutions
         [SerializeField] private bool _startHidden = false;
 
         /// <summary>
+        /// Should this CanvasGroup fade out on start?
+        /// </summary>
+        [Tooltip("Should this CanvasGroup fade out on start?")]
+        [SerializeField] private bool _fadeOutOnStart = false;
+
+        /// <summary>
         /// When faded in, should this CanvasGroup be interactable?
         /// </summary>
         [Tooltip("When faded in, should this CanvasGroup be interactable?")]
@@ -88,6 +94,12 @@ namespace Blyman94.CommonSolutions
             if (_startHidden)
             {
                 OutImmediate();
+            }
+
+            if (_fadeOutOnStart)
+            {
+                InImmediate();
+                FadeOut();
             }
         }
         #endregion
