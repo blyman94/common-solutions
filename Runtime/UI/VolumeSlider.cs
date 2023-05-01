@@ -66,6 +66,7 @@ namespace Blyman94.CommonSolutions
         private void Start()
         {
             _slider.value = PlayerPrefs.GetFloat(_prefsString, _defaultVolume);
+            UpdateVolumeMix(_slider.value);
         }
         private void OnEnable()
         {
