@@ -1,3 +1,4 @@
 {
-	"name": "Blyman94.CommonSolutions"
+	"name": "Blyman94.CommonSolutions",
+	"references": ["Unity.TextMeshPro","Unity.TextMeshPro.Editor"]
 }
