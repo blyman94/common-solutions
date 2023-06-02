@@ -221,7 +221,7 @@ namespace Blyman94.CommonSolutions
         /// to its in or out state.
         /// </summary>
         /// <returns>Task method progress.</returns>
-        protected abstract Task FadeAsync(float fadeDuration, bool fadeIn,
+        public abstract Task FadeAsync(float fadeDuration, bool fadeIn,
             bool dynamicFadeTime);
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Blyman94.CommonSolutions
         /// in or out state.
         /// </summary>
         /// <returns>IEnumerator method progress.</returns>
-        protected abstract IEnumerator FadeRoutine(float fadeDuration, bool fadeIn,
+        public abstract IEnumerator FadeRoutine(float fadeDuration, bool fadeIn,
             bool dynamicFadeTime);
     }
 }

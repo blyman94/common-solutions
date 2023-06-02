@@ -66,7 +66,7 @@ namespace Blyman94.CommonSolutions
         #endregion
 
         #region Fader Methods
-        protected override IEnumerator FadeRoutine(float fadeDuration,
+        public override IEnumerator FadeRoutine(float fadeDuration,
             bool fadeIn, bool dynamicFadeTime)
         {
             float elapsedTime = 0.0f;
@@ -92,7 +92,7 @@ namespace Blyman94.CommonSolutions
             HandleDelegatesAndEvents(fadeIn);
         }
 
-        protected override async Task FadeAsync(float fadeDuration, bool fadeIn,
+        public override async Task FadeAsync(float fadeDuration, bool fadeIn,
             bool dynamicFadeTime)
         {
             float elapsedTime = 0.0f;
