@@ -9,6 +9,8 @@ classes to fade various elements in and out.
 
 Changelog:
 V1.0 - Initial Documentation (4.28.2023)
+V1.0.1 - Make underlying coroutines public (6.1.2023)
+V1.0.2 - Make fade duration public (7.2.2023)
 */
 
 using System.Collections;
