@@ -39,7 +39,7 @@ namespace Blyman94.CommonSolutions
         /// </summary>
         [Header("Fade Timing")]
         [Tooltip("How long will the fade will take?")]
-        [SerializeField] private float _fadeDuration = 2.0f;
+        public float FadeDuration = 2.0f;
 
         /// <summary>
         /// Shortens the fade duration if the volume is already partially faded.
@@ -113,7 +113,7 @@ namespace Blyman94.CommonSolutions
             {
                 StopCoroutine(_activeCoroutine);
             }
-            _activeCoroutine = StartCoroutine(FadeRoutine(_fadeDuration,
+            _activeCoroutine = StartCoroutine(FadeRoutine(FadeDuration,
                 true, _dynamicFadeTime));
         }
 
@@ -139,7 +139,7 @@ namespace Blyman94.CommonSolutions
         /// </summary>
         public async Task FadeInAsync()
         {
-            await FadeAsync(_fadeDuration, true, _dynamicFadeTime);
+            await FadeAsync(FadeDuration, true, _dynamicFadeTime);
         }
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Blyman94.CommonSolutions
             {
                 StopCoroutine(_activeCoroutine);
             }
-            _activeCoroutine = StartCoroutine(FadeRoutine(_fadeDuration,
+            _activeCoroutine = StartCoroutine(FadeRoutine(FadeDuration,
                 false, _dynamicFadeTime));
         }
 
@@ -191,7 +191,7 @@ namespace Blyman94.CommonSolutions
         /// </summary>
         public async Task FadeOutAsync()
         {
-            await FadeAsync(_fadeDuration, false, _dynamicFadeTime);
+            await FadeAsync(FadeDuration, false, _dynamicFadeTime);
         }
 
         /// <summary>
