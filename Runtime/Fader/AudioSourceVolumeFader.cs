@@ -29,7 +29,7 @@ namespace Blyman94.CommonSolutions
         /// </summary>
         [Header("Volume Fade Parameters")]
         [Tooltip("Should this AudioSource volume fade in on start?")]
-        [SerializeField] private bool _fadeInOnStart = true;
+        public bool FadeInOnStart = true;
 
         /// <summary>
         /// The volume of this AudioSource when it is faded in.
@@ -57,7 +57,7 @@ namespace Blyman94.CommonSolutions
         }
         private void Start()
         {
-            if (_fadeInOnStart)
+            if (FadeInOnStart)
             {
                 OutImmediate();
                 FadeIn();
