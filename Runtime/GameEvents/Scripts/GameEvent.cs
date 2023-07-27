@@ -13,6 +13,7 @@ listeners.
 
 Changelog:
 V1.0 - Initial Documentation (4.1.2023)
+V1.1 - Added GameEventRaised delegate (7.26.2023)
 */
 
 using System.Collections.Generic;
@@ -28,6 +29,11 @@ namespace Blyman94.CommonSolutions
     [CreateAssetMenu]
     public class GameEvent : ScriptableObject
     {
+        /// <summary>
+        /// Delegate to signal that this GameEvent has been raised.
+        /// </summary>
+        public GameEventRaised GameEventRaised;
+
         /// <summary>
         /// List of listeners observing in this event. When the event is 
         /// raised, each listener's "OnEventRaised()" method will be called.
@@ -52,6 +58,7 @@ namespace Blyman94.CommonSolutions
                     _listeners[i].OnEventRaised();
                 }
             }
+            GameEventRaised?.Invoke();
         }
 
         /// <summary>
