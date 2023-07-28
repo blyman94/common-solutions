@@ -11,6 +11,7 @@ Changelog:
 V1.0 - Initial Documentation (4.28.2023)
 V1.0.1 - Make underlying coroutines public (6.1.2023)
 V1.0.2 - Make fade duration public (7.2.2023)
+V1.0.3 - Add FadeIn(float duration) and FadeOut(float duration) methods (7.28.2023)
 */
 
 using System.Collections;
@@ -123,6 +124,20 @@ namespace Blyman94.CommonSolutions
         /// Overload. Fades the fadeable element from its current state to its 
         /// fadeIn state using a coroutine.
         /// </summary>
+        public void FadeIn(float fadeDuration)
+        {
+            if (_activeCoroutine != null)
+            {
+                StopCoroutine(_activeCoroutine);
+            }
+            _activeCoroutine = StartCoroutine(FadeRoutine(fadeDuration,
+                true, _dynamicFadeTime));
+        }
+
+        /// <summary>
+        /// Overload. Fades the fadeable element from its current state to its 
+        /// fadeIn state using a coroutine.
+        /// </summary>
         public void FadeIn(float fadeDuration, bool dynamicFadeTime = true)
         {
             if (_activeCoroutine != null)
@@ -167,6 +182,20 @@ namespace Blyman94.CommonSolutions
                 StopCoroutine(_activeCoroutine);
             }
             _activeCoroutine = StartCoroutine(FadeRoutine(FadeDuration,
+                false, _dynamicFadeTime));
+        }
+
+        /// <summary>
+        /// Overload. Fades the fadeable element from its current state to its 
+        /// fadeOut state using a coroutine.
+        /// </summary>
+        public void FadeOut(float fadeDuration)
+        {
+            if (_activeCoroutine != null)
+            {
+                StopCoroutine(_activeCoroutine);
+            }
+            _activeCoroutine = StartCoroutine(FadeRoutine(fadeDuration,
                 false, _dynamicFadeTime));
         }
 
