@@ -11,7 +11,8 @@ when transitioning to each state.
 
 Changelog:
 V1.0 - Initial Documentation (4.28.2023)
-V1.1 - Add option for CanvasGroup to start hidden (4.30.2023)
+V1.0.1 - Add option for CanvasGroup to start hidden (4.30.2023)
+V1.0.2 - Add option for CanvasGroup to fade in on start (7.28.2023)
 */
 
 using System.Collections;
@@ -48,6 +49,12 @@ namespace Blyman94.CommonSolutions
         [Header("Canvas Group Parameters")]
         [Tooltip("Should this CanvasGroup start hidden?")]
         [SerializeField] private bool _startHidden = false;
+
+        /// <summary>
+        /// Should this CanvasGroup fade in on start?
+        /// </summary>
+        [Tooltip("Should this CanvasGroup fade in on start?")]
+        [SerializeField] private bool _fadeInOnStart = false;
 
         /// <summary>
         /// Should this CanvasGroup fade out on start?
@@ -91,7 +98,7 @@ namespace Blyman94.CommonSolutions
         }
         private void Start()
         {
-            if (_startHidden)
+            if (_startHidden || _fadeInOnStart)
             {
                 OutImmediate();
             }
@@ -100,6 +107,10 @@ namespace Blyman94.CommonSolutions
             {
                 InImmediate();
                 FadeOut();
+            }
+            else if (_fadeInOnStart)
+            {
+                FadeIn();
             }
         }
         #endregion
