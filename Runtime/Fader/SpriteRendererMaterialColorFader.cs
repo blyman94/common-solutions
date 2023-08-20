@@ -25,19 +25,37 @@ namespace Blyman94.CommonSolutions
     public class SpriteRendererMaterialColorFader : Fader
     {
         /// <summary>
+        /// Should the SpriteRenderer's material fade in on start?
+        /// </summary>
+        [Tooltip("Should the SpriteRenderer's material fade in on start?")]
+        [SerializeField] private bool _fadeInOnStart = false;
+
+        /// <summary>
+        /// Should the SpriteRenderer's material fade in on start?
+        /// </summary>
+        [Tooltip("Should the SpriteRenderer's material fade in on start?")]
+        [SerializeField] private bool _fadeOutOnStart = false;
+
+        /// <summary>
+        /// Should the SpriteRenderer's material start on the hidden color?
+        /// </summary>
+        [Tooltip("Should the SpriteRenderer's material start on the hidden color?")]
+        [SerializeField] private bool _startHidden = false;
+        /// <summary> 
         /// The color of this SpriteRenderer's material when it is faded in.
         /// </summary>
         [Header("Fade Color")]
-        [Tooltip("The color of this SpriteRenderer's material when it is " + 
+        [Tooltip("The color of this SpriteRenderer's material when it is " +
             "faded in.")]
         [SerializeField] private Color _colorIn = Color.white;
 
         /// <summary>
         /// The color of this SpriteRenderer's material when it is faded out.
         /// </summary>
-        [Tooltip("The color of this SpriteRenderer's material when it is " + 
+        [Tooltip("The color of this SpriteRenderer's material when it is " +
             "faded out.")]
-        [SerializeField] private Color _colorOut = 
+        [SerializeField]
+        private Color _colorOut =
             new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
         /// <summary>
@@ -49,6 +67,23 @@ namespace Blyman94.CommonSolutions
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        private void Start()
+        {
+            if (_startHidden || _fadeInOnStart)
+            {
+                OutImmediate();
+            }
+
+            if (_fadeOutOnStart)
+            {
+                InImmediate();
+                FadeOut();
+            }
+            else if (_fadeInOnStart)
+            {
+                FadeIn();
+            }
         }
         #endregion
 
@@ -62,7 +97,7 @@ namespace Blyman94.CommonSolutions
 
             while (elapsedTime < fadeDuration)
             {
-                _spriteRenderer.material.color = Color.Lerp(startColor, 
+                _spriteRenderer.material.color = Color.Lerp(startColor,
                     targetColor, elapsedTime / fadeDuration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
@@ -82,7 +117,7 @@ namespace Blyman94.CommonSolutions
 
             while (elapsedTime < fadeDuration)
             {
-                _spriteRenderer.material.color = Color.Lerp(startColor, 
+                _spriteRenderer.material.color = Color.Lerp(startColor,
                     targetColor, elapsedTime / fadeDuration);
                 elapsedTime += Time.deltaTime;
                 await Task.Yield();
